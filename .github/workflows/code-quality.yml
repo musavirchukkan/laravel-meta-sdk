@@ -1,0 +1,38 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: composer:v2, phpcs, phpstan, psalm
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run PHP_CodeSniffer
+      run: phpcs --standard=PSR12 src/
+
+    - name: Run PHPStan
+      run: phpstan analyse src/ -l 8
+
+    - name: Run Psalm
+      run: psalm --show-info=true
+
+    - name: Check composer.json
+      run: composer validate --strict
+
+    - name: Check for security vulnerabilities
+      run: composer audit

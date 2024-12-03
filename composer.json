@@ -1,0 +1,44 @@
+{
+    "name": "musavirchukkan/laravel-meta-sdk",
+    "description": "Laravel package for Meta Platform integration with authentication, leads, forms, webhooks, and insights",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^8.0|^9.0|^10.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "laravel/socialite": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0|^10.0",
+        "orchestra/testbench": "^6.0|^7.0|^8.0",
+        "mockery/mockery": "^1.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Musavirchukkan\\LaravelMetaSdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Musavirchukkan\\LaravelMetaSdk\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdul Musavir Chukkan",
+            "email": "abdulmusavirc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Musavirchukkan\\LaravelMetaSdk\\MetaServiceProvider"
+            ],
+            "aliases": {
+                "Meta": "Musavirchukkan\\LaravelMetaSdk\\Facades\\Meta"
+            }
+        }
+    }
+}
